@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import { Outlet } from "react-router-dom";
+import Menu from './components/menu/menu';
+import { ConfigProvider, Layout } from 'antd';
+const { Content } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#00c2a8',
+          borderRadius: 4,
+          colorLink: '#33333',
+        },
+      }}
+    >
+      <Layout className="layout">
+        <Menu />
+        <Content
+          style={{
+            padding: '0 50px',
+            backgroundColor: '#fff',  
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <div id="detail">
+            <Outlet />
+          </div>
+        </Content>
+      </Layout>
+    </ConfigProvider>
+
   );
 }
 
